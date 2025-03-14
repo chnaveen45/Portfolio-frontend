@@ -202,7 +202,7 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      const API_URL = process.env.REACT_APP_API_URL || 'https://portfolio-backend-8vrb4nhpt-naveens-projects-42486591.vercel.app';
+      const API_URL = "http://localhost:5000" ;
       const response = await fetch(`${API_URL}/api/contact/submit`, {
         method: 'POST',
         headers: {
