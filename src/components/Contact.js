@@ -202,7 +202,7 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      const API_URL = "http://localhost:5000" ;
+      const API_URL = "https://portfolio-backend-swart-eight.vercel.app/" ;
       const response = await fetch(`${API_URL}/api/contact/submit`, {
         method: 'POST',
         headers: {
