@@ -202,7 +202,8 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      const API_URL = 'https://portfolio-backend-chi-weld.vercel.app';
+      // Use local backend URL
+      const API_URL = 'https://portfolio-backend-96vr.onrender.com/';
       
       // Add a timeout to the fetch request
       const controller = new AbortController();
