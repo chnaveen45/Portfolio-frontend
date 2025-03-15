@@ -202,7 +202,7 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      const API_URL = 'https://portfolio-backend-8vrb4nhpt-naveens-projects-42486591.vercel.app';
+      const API_URL = 'https://portfolio-backend-chi-weld.vercel.app';
       
       // Add a timeout to the fetch request
       const controller = new AbortController();
