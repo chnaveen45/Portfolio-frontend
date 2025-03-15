@@ -203,6 +203,11 @@ const Contact = () => {
     try {
       console.log('Sending data to server:', formData);
       const API_URL = 'https://portfolio-backend-8vrb4nhpt-naveens-projects-42486591.vercel.app';
+      
+      // Add a timeout to the fetch request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+      
       const response = await fetch(`${API_URL}/Form`, {
         method: 'POST',
         headers: {
@@ -210,11 +215,25 @@ const Contact = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify(formData),
+        signal: controller.signal
       });
+      
+      clearTimeout(timeoutId);
 
       console.log('Response status:', response.status);
-      const data = await response.json();
-      console.log('Response data:', data);
+      
+      // Handle non-JSON responses
+      const contentType = response.headers.get("content-type");
+      let data;
+      
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+        console.log('Response data:', data);
+      } else {
+        const text = await response.text();
+        console.log('Response text:', text);
+        data = { message: text || 'Received non-JSON response from server' };
+      }
 
       if (!response.ok) {
         throw new Error(data.message || 'Failed to send message. Please try again.');
@@ -235,7 +254,9 @@ const Contact = () => {
       // Handle the error message properly
       let errorMessage = 'Failed to connect to server. Please try again later.';
       
-      if (error.message) {
+      if (error.name === 'AbortError') {
+        errorMessage = 'Request timed out. The server might be down or unreachable.';
+      } else if (error.message) {
         // If it's an Error object with a message property
         errorMessage = error.message;
       } else if (typeof error === 'object' && error !== null) {
