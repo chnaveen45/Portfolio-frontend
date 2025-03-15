@@ -202,7 +202,7 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      const API_URL = 'https://portfolio-backend-chi-weld.vercel.app';
+      const API_URL = 'https://portfolio-backend-8vrb4nhpt-naveens-projects-42486591.vercel.app';
       const response = await fetch(`${API_URL}/Form`, {
         method: 'POST',
         headers: {
@@ -217,12 +217,12 @@ const Contact = () => {
       console.log('Response data:', data);
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message. Please try again.');
+        throw new Error(data.message || 'Failed to send message. Please try again.');
       }
 
       setStatus({
         submitting: false,
-        message: 'Message sent successfully!',
+        message: data.message || 'Message sent successfully!',
         error: false
       });
 
@@ -231,9 +231,21 @@ const Contact = () => {
 
     } catch (error) {
       console.error('Error submitting form:', error);
+      
+      // Handle the error message properly
+      let errorMessage = 'Failed to connect to server. Please try again later.';
+      
+      if (error.message) {
+        // If it's an Error object with a message property
+        errorMessage = error.message;
+      } else if (typeof error === 'object' && error !== null) {
+        // If it's a plain object, stringify it
+        errorMessage = JSON.stringify(error);
+      }
+      
       setStatus({
         submitting: false,
-        message: error.message || 'Failed to connect to server. Please try again later.',
+        message: errorMessage,
         error: true
       });
     }
