@@ -202,8 +202,8 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      // Use local backend URL
-      const API_URL = 'https://portfolio-backend-96vr.onrender.com/';
+      // Fix the URL - remove the trailing slash
+      const API_URL = 'https://portfolio-backend-96vr.onrender.com';
       
       // Add a timeout to the fetch request
       const controller = new AbortController();
