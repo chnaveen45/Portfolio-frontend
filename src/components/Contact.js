@@ -202,8 +202,8 @@ const Contact = () => {
 
     try {
       console.log('Sending data to server:', formData);
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${API_URL}/api/contact/submit`, {
+      const API_URL = 'https://portfolio-backend-chi-weld.vercel.app';
+      const response = await fetch(`${API_URL}/Form`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
