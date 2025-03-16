@@ -203,11 +203,9 @@ const Contact = () => {
     try {
       console.log('Sending data to server:', formData);
       // Fix the URL - remove the trailing slash
-      const API_URL = 'https://portfolio-backend-96vr.onrender.com';
+      const API_URL = "http://localhost:5000" || "https://portfolio-backend-96vr.onrender.com";
       
-      // Add a timeout to the fetch request
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+ 
       
       const response = await fetch(`${API_URL}/Form`, {
         method: 'POST',
@@ -216,10 +214,10 @@ const Contact = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify(formData),
-        signal: controller.signal
+     
       });
       
-      clearTimeout(timeoutId);
+    
 
       console.log('Response status:', response.status);
       
