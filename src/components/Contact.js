@@ -203,7 +203,7 @@ const Contact = () => {
     try {
       console.log('Sending data to server:', formData);
       // Fix the URL - remove the trailing slash
-      const API_URL = "http://localhost:5000" || "https://portfolio-backend-96vr.onrender.com";
+      // const API_URL = "http://localhost:5000" || "https://portfolio-backend-96vr.onrender.com";
       
  
       
