@@ -240,7 +240,7 @@ const Projects = () => {
       title: "Mobile App",
       description: "A React Native mobile app with intuitive UI/UX and seamless navigation for service management.",
       image: "/images/app.jpg",
-      tech: ["React-Native", "Github"],
+      tech: ["React-Native", "Github","Expo"],
       github: "https://github.com/vishwasri-technologies/vt-app/tree/finally",
       
     }
